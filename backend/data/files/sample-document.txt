@@ -1,0 +1,19 @@
+Sample Document for TCP ACK Attack Testing
+==========================================
+
+This document is used for testing file download functionality
+in the Optimistic TCP ACK Attack analysis project.
+
+Content includes:
+- Network monitoring capabilities
+- Connection analysis
+- Performance metrics
+- Security analysis
+
+This file can be used to test:
+1. Normal downloads
+2. Range request handling
+3. Connection monitoring
+4. Suspicious activity detection
+
+Generated for educational and research purposes.

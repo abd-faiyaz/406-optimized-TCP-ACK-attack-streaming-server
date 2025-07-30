@@ -1,0 +1,9 @@
+Flask
+flask-cors
+flask-socketio
+python-dotenv
+eventlet
+rich
+questionary
+psutil
+requests

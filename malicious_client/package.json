@@ -1,0 +1,52 @@
+{
+    "name": "optimistic-ack-attacker",
+    "version": "1.0.0",
+    "description": "Educational tool for demonstrating Optimistic ACK attacks - CLI and UI modes",
+    "main": "cli.js",
+    "scripts": {
+        "start": "node cli.js",
+        "attack": "node cli.js",
+        "quick-test": "node cli.js",
+        "install-deps": "npm install"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "cli-table3": "^0.6.5",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "inquirer": "^8.2.6",
+        "node-fetch": "^2.6.12",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.17",
+        "@types/inquirer": "^8.2.6",
+        "@types/node": "^20.4.2",
+        "@types/node-fetch": "^2.6.4",
+        "@types/react": "^18.2.15",
+        "@types/react-dom": "^18.2.7",
+        "@vitejs/plugin-react": "^4.0.3",
+        "autoprefixer": "^10.4.14",
+        "concurrently": "^8.2.0",
+        "postcss": "^8.4.26",
+        "tailwindcss": "^3.3.3",
+        "tsx": "^3.12.7",
+        "typescript": "^5.1.6",
+        "vite": "^4.4.4"
+    },
+    "keywords": [
+        "tcp",
+        "attack",
+        "optimistic-ack",
+        "networking",
+        "security",
+        "educational"
+    ],
+    "author": "Security Research",
+    "license": "MIT",
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}

@@ -1,0 +1,23 @@
+Starting the Server:
+Running an Attack:
+Monitoring Dashboard:
+Normal TCP Flow Control:
+Client sends data to server
+Server sends ACK confirming receipt
+Server uses ACK number to determine what data to send next
+Flow control prevents overwhelming the receiver
+Optimistic ACK Attack:
+Attacker connects to server normally
+Fake ACK injection - Attacker sends ACK packets claiming to have received more data than actually sent
+Server acceleration - Server believes client received more data, sends faster
+Data amplification - Attacker gets significantly faster transfer rates
+
+
+Server Configuration:
+# Development mode
+# Production with high security
+# Vulnerable mode for testing
+Attack Configuration:
+# Interactive mode on malicious 
+# Direct configuration
+Docker Deployment:

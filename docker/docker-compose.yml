@@ -1,0 +1,103 @@
+# docker/docker-compose.yml
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+    ports:
+      - "3001:3001"  # API
+      - "8080:8080"  # HTTP Server
+      - "1935:1935"  # RTMP
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+    environment:
+      - NODE_ENV=development
+      - LOG_LEVEL=debug
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    security_opt:
+      - no-new-privileges
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  client-normal:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.client
+      args:
+        CLIENT_TYPE: normal
+    depends_on:
+      - server
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=8080
+      - CLIENT_TYPE=normal
+    volumes:
+      - ../logs:/app/logs
+    restart: unless-stopped
+
+  client-malicious:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.client
+      args:
+        CLIENT_TYPE: malicious
+    depends_on:
+      - server
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=8080
+      - CLIENT_TYPE=malicious
+    volumes:
+      - ../logs:/app/logs
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    privileged: true  # Required for raw sockets
+    restart: unless-stopped
+
+  monitoring:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.monitoring
+    ports:
+      - "9090:9090"  # Prometheus
+      - "3000:3000"  # Grafana
+    volumes:
+      - ../data/monitoring:/app/data
+      - ../config/monitoring:/app/config
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:2.7-alpine
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=tcp_attack_metrics
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin123
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+  influxdb-data:

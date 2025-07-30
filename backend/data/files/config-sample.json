@@ -1,0 +1,16 @@
+{
+  "server": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "monitoring": {
+    "enabled": true,
+    "interval": 5000
+  },
+  "analysis": {
+    "thresholds": {
+      "rapidRequests": 10,
+      "largeDownload": 104857600
+    }
+  }
+}

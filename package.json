@@ -1,0 +1,24 @@
+{
+    "name": "optimistic-tcp-attack-project",
+    "version": "1.0.0",
+    "description": "Educational implementation of Optimistic TCP ACK Attack analysis",
+    "main": "index.js",
+    "scripts": {
+      "setup": "bash scripts/setup.sh",
+      "start": "lerna run start --parallel",
+      "build": "lerna run build",
+      "test": "lerna run test",
+      "clean": "lerna clean",
+      "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+      "dev:backend": "cd backend && npm run dev",
+      "dev:frontend": "cd frontend && npm run dev"
+    },
+    "devDependencies": {
+      "lerna": "^7.0.0",
+      "concurrently": "^8.0.0"
+    },
+    "keywords": ["tcp", "attack", "networking", "security", "education"],
+    "author": "Security Research Team",
+    "license": "MIT",
+    "private": true
+}
